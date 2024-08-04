@@ -38,8 +38,11 @@ Model Information
 
 ## Ethical Guardian v2
 Model Name: NousResearch/Llama-2-7b-chat-hf
+
 Dataset: synapsecai/synthetic-sensitive-information (20% subset)
+
 QLoRA Parameters
+
 lora_r = 64
 lora_alpha = 16
 lora_dropout = 0.1
