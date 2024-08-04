@@ -45,7 +45,7 @@ Dataset: synapsecai/synthetic-sensitive-information (20% subset)
 
 QLoRA Parameters
 
-lora_r = 64
+lora_r = 64 
 lora_alpha = 16
 lora_dropout = 0.1
 BitsAndBytes Parameters
