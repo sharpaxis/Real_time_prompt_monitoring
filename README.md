@@ -36,6 +36,8 @@ Copy code
 flask run
 Model Information
 
+Model Information
+
 ## Ethical Guardian v2
 Model Name: NousResearch/Llama-2-7b-chat-hf
 
@@ -51,7 +53,9 @@ use_4bit = True
 bnb_4bit_compute_dtype = "float16"
 bnb_4bit_quant_type = "nf4"
 use_nested_quant = False
+
 Training Arguments
+
 num_train_epochs = 1
 fp16 = False
 bf16 = False
@@ -69,24 +73,8 @@ warmup_ratio = 0.03
 group_by_length = True
 save_steps = 0
 logging_steps = 25
+
 SFT Parameters
+
 max_seq_length = None
 packing = False
-Description
-Ethical Guardian v2 is an ethically fine-tuned version of Llama 2, specifically trained to detect and flag private or sensitive information within natural text. It serves as a powerful tool for data privacy and security, capable of identifying potentially vulnerable data such as:
-API keys
-Personally Identifiable Information (PII)
-Financial data
-Confidential business information
-Login credentials
-Key Features
-Analyzes natural language input to identify sensitive content
-Provides explanations for detected sensitive information
-Helps prevent accidental exposure of private data
-Supports responsible data handling practices
-Use Cases
-Content moderation
-Data loss prevention
-Compliance checks for GDPR, HIPAA, etc.
-Security audits of text-based communications
-This model aims to enhance data protection measures and promote ethical handling of sensitive information in various applications and industries.
