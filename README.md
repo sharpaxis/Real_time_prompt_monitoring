@@ -1,80 +1,150 @@
+
+
+
 # Real-Time Prompt Monitoring System
 
-## Overview
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/build-passing-brightgreen" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" /></a>
+  <a href="https://huggingface.co/Sharpaxis/Llama-2-7_Ethical_Guardian"><img src="https://img.shields.io/badge/Model-Llama_2_Ethical_Guardian-orange" /></a>
+  <a href="https://huggingface.co/Sharpaxis/distilbert-sensitive-classification"><img src="https://img.shields.io/badge/Model-DistilBERT_Sensitive-red" /></a>
+  <a href="https://huggingface.co/datasets/Sharpaxis/Synthetic-Sensitive-data"><img src="https://img.shields.io/badge/Dataset-Synthetic_Sensitive_Data-yellow" /></a>
+</p>
 
-This project is a real-time prompt monitoring system designed for companies to monitor the prompts entered into their chatbots by employees. It leverages advanced NLP models to ensure the integrity and security of the interactions by filtering out harmful speech and detecting private information leaks.
-Features
 
-Harmful Speech Detection: Utilizes the ToxicBERT model to filter out harmful and toxic speech in real-time.
-Private Information Leak Detection: Employs a fine-tuned version of the Llama 2 model, named "Ethical Guardian v2," to detect and prevent any private or sensitive information from being leaked through chatbot prompts.
-Technology Stack
 
-ToxicBERT: A pre-trained BERT model specifically fine-tuned to detect toxic speech.
-Llama 2: A fine-tuned version of the Llama 2 model, customized to identify and flag private information.
-Python: The primary programming language used for model integration and system development.
-Flask: A micro web framework used for building the API and serving the models.
-Google Colab: Utilized for fine-tuning the Llama 2 model due to its resource requirements.
-Installation
+# Overview
 
-## Clone the Repository
-sh
-Copy code
+The Real-Time Prompt Monitoring System is designed for companies that use chatbots internally and want to ensure that employee-entered prompts remain safe, compliant, and free from sensitive information leaks.
+
+The system processes every prompt in real-time and performs two major checks:
+	•	Hate/Toxic Speech Detection
+	•	Sensitive Information Leak Detection
+(passwords, API keys, emails, tokens, credentials, and other confidential identifiers)
+
+This solution acts as an AI firewall between employees and corporate LLM systems.
+
+
+
+# ✨ Features
+
+🔒 Private Information Leak Detection
+
+Powered by a fine-tuned Llama 2 model:
+➡ Ethical Guardian v2
+### 🔗 https://huggingface.co/Sharpaxis/Llama-2-7_Ethical_Guardian
+
+Detects:
+	•	API keys
+	•	Passwords
+	•	Access tokens
+	•	Internal IDs
+	•	Sensitive corporate data
+	•	Personally Identifiable Information (PII)
+
+## 🛡 Harmful Speech Detection
+
+Using ToxicBERT, the system detects and blocks:
+	•	Abusive language
+	•	Harassment
+	•	Discriminatory or toxic sentences
+
+## 🧪 Sensitive-String Classifier (DistilBERT)
+
+Model:
+### ➡ https://huggingface.co/Sharpaxis/distilbert-sensitive-classification
+
+This model specifically detects:
+	•	Keys
+	•	Passwords
+	•	API tokens
+	•	Private strings that follow known credential patterns
+
+Works as a second-layer safety filter.
+
+
+## 🧰 Technology Stack
+
+Component	Description
+Python	Primary backend language
+Flask	API server for real-time inference
+ToxicBERT	Toxic speech detection
+Llama-2 (Ethical Guardian v2)	Sensitive information leak detection
+DistilBERT Sensitive Classifier	Detects credential-pattern leaks
+Google Colab	Used for fine-tuning Llama 2
+QLoRA	Parameter-efficient training methodology
+
+
+
+## 🚀 Installation
+
+1. Clone the Repository
+
 git clone https://github.com/your-username/prompt-monitoring-system.git
 cd prompt-monitoring-system
-Set Up Virtual Environment
-sh
-Copy code
+
+2. Create Virtual Environment
+
 python3 -m venv venv
-source venv/bin/activate   # On Windows use `venv\Scripts\activate`
-Install Dependencies
-sh
-Copy code
+source venv/bin/activate     # macOS & Linux
+venv\Scripts\activate        # Windows
+
+3. Install Dependencies
+
 pip install -r requirements.txt
-Run the Application
-sh
-Copy code
+
+4. Run the Application
+
 flask run
-Model Information
 
-Model Information
 
-## Ethical Guardian v2
-Model Name: NousResearch/Llama-2-7b-chat-hf
+# 🤖 Model Information
 
-Dataset: synapsecai/synthetic-sensitive-information (20% subset)
+## 🦙 Ethical Guardian v2 — Llama-2 Fine-Tuned Model
 
-QLoRA Parameters
+Property	Value
+Base Model	NousResearch/Llama-2-7b-chat-hf
+Dataset	synapsecai/synthetic-sensitive-information (20%)
+QLoRA Rank	64
+QLoRA Alpha	16
+Dropout	0.1
+Quantization	4-bit NF4
+Training Epochs	1 epoch
+Batch Size	32
+Learning Rate	2e-4
+Optimizer	paged_adamw_32bit
+Max Grad Norm	0.3
+Warmup	3%
+Gradient Checkpointing	Enabled
 
-lora_r = 64 
-lora_alpha = 16
-lora_dropout = 0.1
-BitsAndBytes Parameters
-use_4bit = True
-bnb_4bit_compute_dtype = "float16"
-bnb_4bit_quant_type = "nf4"
-use_nested_quant = False
+DistilBERT Sensitive Classifier
 
-Training Arguments
+Detects:
+	•	Passwords
+	•	API Keys
+	•	Tokens
+	•	Other credential strings
 
-num_train_epochs = 1
-fp16 = False
-bf16 = False
-per_device_train_batch_size = 32
-per_device_eval_batch_size = 16
-gradient_accumulation_steps = 1
-gradient_checkpointing = True
-max_grad_norm = 0.3
-learning_rate = 2e-4
-weight_decay = 0.001
-optim = "paged_adamw_32bit"
-lr_scheduler_type = "cosine"
-max_steps = -1
-warmup_ratio = 0.03
-group_by_length = True
-save_steps = 0
-logging_steps = 25
+### 🔗 https://huggingface.co/Sharpaxis/distilbert-sensitive-classification
 
-SFT Parameters
+ToxicBERT
 
-max_seq_length = None
-packing = False
+Used for filtering:
+	•	Toxic, harmful, or unsafe text
+	•	Threatening/abusive content
+
+
+# 📊 Dataset
+
+The primary dataset used for fine-tuning:
+
+🔗 Synthetic Sensitive Data
+### https://huggingface.co/datasets/Sharpaxis/Synthetic-Sensitive-data
+
+Contains examples of:
+	•	API keys
+	•	Passwords
+	•	Database credentials
+	•	PII samples
+	•	Sensitive corporate identifiers
+
