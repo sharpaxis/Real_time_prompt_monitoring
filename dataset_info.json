@@ -1,0 +1,52 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "synthetic-sensitive-data",
+  "dataset_size": 367937,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/Sharpaxis/Synthetic-Sensitive-data@ef4cc81106b7a58f0569eccffa392a0050ddcb50/data/train-00000-of-00001.parquet": {
+      "num_bytes": 92956,
+      "checksum": null
+    },
+    "hf://datasets/Sharpaxis/Synthetic-Sensitive-data@ef4cc81106b7a58f0569eccffa392a0050ddcb50/data/test-00000-of-00001.parquet": {
+      "num_bytes": 23420,
+      "checksum": null
+    }
+  },
+  "download_size": 116376,
+  "features": {
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "label": {
+      "dtype": "int64",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 484313,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 294289,
+      "num_examples": 2872,
+      "dataset_name": "synthetic-sensitive-data"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 73648,
+      "num_examples": 718,
+      "dataset_name": "synthetic-sensitive-data"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
